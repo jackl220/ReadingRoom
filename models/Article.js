@@ -7,7 +7,7 @@ const ArticleSchema = new Schema(
     description: String,
     body: String
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 const Article = mongoose.model("Article", ArticleSchema);
