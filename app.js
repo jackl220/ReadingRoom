@@ -7,6 +7,7 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var passport = require("passport");
 var routes = require("./routes");
+require("dotenv").config();
 
 var app = express();
 //db setup
@@ -33,7 +34,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(routes);
 
-// catch 404 and forward to error handler
+//catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error("Not Found");
   err.status = 404;
