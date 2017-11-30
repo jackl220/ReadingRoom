@@ -42,7 +42,7 @@ UserSchema.methods.setPassword = function(password) {
 
 UserSchema.methods.comparePassword = function(candidatePassword, callback) {
   var candidateHash = crypto
-    .pbkf2Sync(candidatePassword, this.salt, 10000, 512, "sha512")
+    .pbkdf2Sync(candidatePassword, this.salt, 10000, 512, "sha512")
     .toString("hex");
   if (!candidateHash) {
     const err = new Error("Failed Hash");
@@ -58,7 +58,7 @@ UserSchema.methods.generateJWT = function() {
   const timestamp = new Date().getTime();
   return jwt.encode(
     {
-      sub: this_id,
+      sub: this._id,
       iat: timestamp,
       email: this.email
     },
